@@ -1,7 +1,7 @@
 <config xmlns="http://www.bbaw.de/telota/software/ediarum/web/appconf">
     <project>
         <name>sbw</name>
-        <status>intern</status>
+        <status>test</status>
     </project>
     <object xml:id="briefe">
         <name>Briefe</name>
