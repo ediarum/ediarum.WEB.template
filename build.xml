@@ -55,25 +55,4 @@
         <classpath refid="classpath.core"/>
     </typedef>
 
-    <target name="build-and-deploy-to-local" description="Build xar package, upload and install to localhost">
-        <echo message="Building xar package..." />
-        <antcall target="build-xar" />
-        <echo message="Uploading package..." />
-        <property file="build.properties"/>
-        <property name="project.version" 
-            value="v${project.version.major}.${project.version.minor}.${project.version.patch}"/>
-        <xdb:store uri="${server.local.uri}/db/system/repo/" ssl="false" 
-            user="${server.local.user}" password="${server.local.password}" permissions="rwxrwx---">
-            <fileset dir="${build.dir}">
-                <include name="${project.app.name}_${project.version}.${project.version.date}.xar" />
-            </fileset>
-        </xdb:store>
-        <echo message="Installing package..." />
-        <xdb:xquery uri="${server.local.uri}/db" ssl="false" 
-            user="${server.local.user}" password="${server.local.password}" 
-            query="repo:install-and-deploy-from-db('/db/system/repo/${project.app.name}_${project.version}.${project.version.date}.xar')" 
-            outputproperty="deploy.output" />
-        <echo message="${deploy.output}" />
-    </target>
-
 </project>

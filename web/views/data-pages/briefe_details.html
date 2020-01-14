@@ -1,0 +1,29 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+  <div data-template="edweb:load-current-object">
+    <!-- <div data-template="edweb:page"> -->
+    <div id="page-header">
+      <div class="container">
+        <div data-template="edweb:transform-current" data-template-resource="resources/xslt/briefe_metadata.xsl"/>
+        <div data-template="app:data-path"/> 
+      </div>
+    </div>
+    <div id="page-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-1"/>
+          <div class="col-md-7 book-like" id="object-content">
+            <div data-template="edweb:transform-current" data-template-resource="resources/xslt/briefe_details.xsl">
+              <div data-template="app:do-if-intern">
+                <param name="intern" value="true"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1"/>
+          <div class="col-md-3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

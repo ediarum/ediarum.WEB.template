@@ -1,7 +1,7 @@
 <config xmlns="http://www.bbaw.de/telota/software/ediarum/web/appconf">
     <project>
         <name>sbw</name>
-        <status>intern</status>
+        <status>test</status>
     </project>
     <object xml:id="briefe">
         <name>Briefe</name>
@@ -22,7 +22,7 @@
             <namespace id="tei">http://www.tei-c.org/ns/1.0</namespace>
             <root>tei:person</root>
             <id>./@xml:id</id>
-            <label type="xpath">.//tei:persName/normalize-string()</label>
+            <label type="xpath">.//tei:persName/normalize-space()</label>
         </item>
         <filters>
             <filter xml:id="alphabet">
