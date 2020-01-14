@@ -18,7 +18,7 @@ edweb:generate-path("/index.html", "static-pages/index.html"),
 (: Verweise mit Feed :)
 edweb:forward-view-with-feed("/briefe/index.html", "data-pages/briefe.html", "object-type/briefe"),
 edweb:forward-view-with-feed("/personen/index.html", "data-pages/personen.html", "object-type/personen"),
-edweb:forward-view-with-feed("/briefe/", "data-pages/briefe_detail.html", "object-type/briefe/id/"),
+edweb:forward-view-with-feed("/briefe/", "data-pages/briefe_details.html", "object-type/briefe/id/"),
 edweb:forward-view-with-feed("/personen/", "data-pages/personen_details.html", "object-type/personen/id/"),
 
 (: API :)
