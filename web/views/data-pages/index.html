@@ -1,0 +1,63 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div data-template="edweb:load-objects">
+        <div id="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"/>
+                    <div class="col-md-7">
+                        <h1 data-template="edweb:get-object-type-label"/>
+                        <div class="hinweis">
+                            <p>Es befinden sich <span data-template="edweb:count" data-template-from="all"/> Einträge in der Datenbank.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"/>
+                    <div class="col-md-7">
+                        <div class="box whitebox">
+                            <div class="boxInner index">
+                                <ul class="square-list">
+                                    <li data-template="templates:each" data-template-from="show" data-template-to="item">
+                                        <a data-template="edweb:template-detail-link" data-template-from="item">
+                                            <span class="theme-color" data-template="edweb:template-get-string" data-template-path="item?label"/>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="center" data-template="edweb:template-pagination" data-template-from="filtered"/>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="box graybox filter">
+                            <h3>Register</h3>
+                            <div class="boxInner" >
+                                <ul class="">
+                                    <li><a href="$base-url/bibl/index.html">Bibliographie</a></li>
+                                    <li><a href="$base-url/items/index.html">Sachbegriffe</a></li>
+                                    <li><a href="$base-url/transcriptGroups/index.html">Transkriptionsgruppen</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div data-template="edweb:template-show-filter">
+                            <div class="box graybox filter">
+                                <h3>Nach <span data-template="edweb:template-get-string" data-template-path="filter?name"/> filtern</h3>
+                                <div class="boxInner">
+                                    <ul class="combobox">
+                                        <li><a data-template="edweb:template-filter-all-link"/></li>
+                                        <li data-template="templates:each" data-template-from="filter-items" data-template-to="item">
+                                            <a data-template="edweb:template-filter-item-link"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

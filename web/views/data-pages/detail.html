@@ -1,0 +1,33 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div data-template="edweb:load-current-object">
+        <div id="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"/>
+                    <div class="col-md-7">
+                        <h1 data-template="edweb:get-label">Titel</h1>
+                    </div>
+                </div>
+                <!--div data-template="edweb:transform-current" data-template-resource="resources/xslt/text-metadata.xsl"/-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul id="viewSwitch">
+                           <!-- {if ($conjectured)
+                                then ()
+                                else (
+                                if ($edweb:p_view='k')
+                                then (<li class="current"><a href="detail.xql?id={$p_id}&view=k">Kritischer Text</a></li>)
+                                else (<li><a href="detail.xql?id={$p_id}&view=k">Kritischer Text</a></li>),
+                                if ($edweb:p_view='l')
+                                then (<li class="current"><a href="detail.xql?id={$p_id}&view=l">Lesetext</a></li>)
+                                else (<li><a href="detail.xql?id={$p_id}&view=l">Lesetext</a></li>)
+                            )} -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--div id="object-content" data-template="edweb:transform-current" data-template-resource="resources/xslt/text_detail.xsl"/-->
+        <!-- </div><!- - ediarum.weblib:page - -> -->
+    </div>
+</div>

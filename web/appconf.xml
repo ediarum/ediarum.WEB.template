@@ -1,0 +1,39 @@
+<config xmlns="http://www.bbaw.de/telota/software/ediarum/web/appconf">
+    <project>
+        <name>sbw</name>
+        <status>intern</status>
+    </project>
+    <object xml:id="briefe">
+        <name>Briefe</name>
+        <collection>/Briefe</collection>
+        <item>
+            <namespace id="tei">http://www.tei-c.org/ns/1.0</namespace>
+            <root>tei:TEI</root>
+            <id>@xml:id</id>
+            <label type="xpath">.//tei:titleStmt/tei:title[1]/string()</label>
+        </item>
+        <filters>
+        </filters>
+    </object>
+    <object xml:id="personen">
+        <name>Personen</name>
+        <collection>/Register</collection>
+        <item>
+            <namespace id="tei">http://www.tei-c.org/ns/1.0</namespace>
+            <root>tei:person</root>
+            <id>./@xml:id</id>
+            <label type="xpath">.//tei:persName/normalize-string()</label>
+        </item>
+        <filters>
+            <filter xml:id="alphabet">
+                <name>alphabetisch</name>
+                <type>single</type>
+                <root type="label"/>
+                <!-- <condition type="label"/> -->
+                <label-function type="xquery">
+                    function($string) {substring(replace(normalize-space($string), '^\(', ''),1,1)}
+                </label-function>
+            </filter>
+        </filters>
+    </object>
+</config>

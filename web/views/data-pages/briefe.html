@@ -1,0 +1,47 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div data-template="edweb:load-objects">
+        <div id="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">
+                        <h1>Briefe</h1>
+                        <div class="hinweis">
+                            <p>Es befinden sich Einträge zu <span data-template="edweb:count" data-template-from="all"></span> Briefen in der Datenbank.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">
+                        <div class="box whitebox">
+                            <div class="boxInner">
+                                <p data-template="edweb:switch">
+                                    <switch><span data-template="edweb:count" data-template-from="filtered"></span></switch>
+                                    <span case="0">Für diese Auswahl wurde kein Brief gefunden.</span>
+                                    <span case="1">Für diese Auswahl wurde ein Brief gefunden:</span>
+                                    <span case="default">Für diese Auswahl wurden <span data-template="edweb:count" data-template-from="filtered"></span> Briefe gefunden:</span>
+                                </p>
+                                <ul class="square-list">
+                                    <li data-template="templates:each" data-template-from="show" data-template-to="item">
+                                        <a data-template="edweb:template-detail-link" data-template-from="item">
+                                            <span class="theme-color" data-template="edweb:template-get-string" data-template-path="item?label"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="center" data-template="edweb:template-pagination" data-template-from="filtered"></div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

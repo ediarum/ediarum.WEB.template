@@ -1,0 +1,121 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div data-template="edweb:load-current-object">
+        <link rel="stylesheet" href="$base-url/resources/css/handschriften_details.css"/>
+        <div id="page-header">
+            <div data-template="edweb:load-objects">
+                <nav class="navbar navbar-expand-sm navbar-white bg-white py-0">
+                    <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarBlaettern" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="col-md-1"></div>
+                    <div class="breadcrumb p-0 collapse navbar-collapse" id="navbarBlaettern">
+                        <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <!--a data-template="app:template-link-to-prev-object"></a-->
+                        </li>
+                        </ul>
+                        <!--ol data-template="app:template-breadcrumb-items" data-template-filter="city yrepository"/-->
+                        <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <!--a data-template="app:template-link-to-next-object"></a-->
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4"></div>
+                    </div>
+                </nav>
+            </div>
+            <div class="container">
+                <div data-template="edweb:transform-current" data-template-resource="resources/xslt/handschriften_metadata.xsl"/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul id="viewSwitch">
+                           <!-- {if ($conjectured)
+                                then ()
+                                else (
+                                if ($edweb:p_view='k')
+                                then (<li class="current"><a href="detail.xql?id={$p_id}&amp;view=k">Kritischer Text</a></li>)
+                                else (<li><a href="detail.xql?id={$p_id}&amp;view=k">Kritischer Text</a></li>),
+                                if ($edweb:p_view='l')
+                                then (<li class="current"><a href="detail.xql?id={$p_id}&amp;view=l">Lesetext</a></li>)
+                                else (<li><a href="detail.xql?id={$p_id}&amp;view=l">Lesetext</a></li>)
+                            )} -->
+                        </ul>
+                    </div>
+                </div>
+                <div data-template="app:data-path"/>
+            </div>
+        </div>
+        <div id="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"/>
+                    <div class="col-md-7 book-like" id="object-content">
+                        <div data-template="edweb:transform-current" data-template-resource="resources/xslt/handschriften_details.xsl">
+                            <div data-template="app:do-if-intern">
+                                <param name="intern" value="true"/>
+                            </div>
+                        </div>
+                                       <!-- {if ($letterText!='') then $letterText
+                        else (<div class="notfound"><p>Fehler!<br/>Es wurde kein entsprechendes Dokument in der Datenbank gefunden.</p></div>)} -->
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <div class="box graybox filter">
+                            <div data-template="edweb:load-inner-navigation" data-template-inner-navigation-name="section">
+                                <h3><span data-template="edweb:template-get-string" data-template-path="inner-navigation-name"/></h3>
+                                <div class="boxInner">
+                                    <ul>
+                                        <li data-template="templates:each" data-template-from="inner-navigation-items" data-template-to="item">
+                                            <a href="#${inner-navigation-id}/${item?id}" data-template="edweb:add-string-to-href"><span data-template="edweb:template-get-string" data-template-path="item?label"/></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box graybox filter">
+                            <div data-template="edweb:load-inner-navigation" data-template-inner-navigation-name="ms">
+                                <h3><span data-template="edweb:template-get-string" data-template-path="inner-navigation-name"/></h3>
+                                <div class="boxInner">
+                                    <ul>
+                                        <li data-template="templates:each" data-template-from="inner-navigation-items" data-template-to="item">
+                                            <a href="#${inner-navigation-id}/${item?id}" data-template="edweb:add-string-to-href"><span data-template="edweb:template-get-string" data-template-path="item?label"/></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box graybox filter">
+                            <!-- <div data-template="edweb:get-backlink" data-template-backlink-name="ms-backlink">
+                                <h3 data-template="edweb:get-backlink-title" data-template-backlink-name="ms-backlink"/>
+                                <ul class="boxInner">
+                                    <li data-template="templates:each" data-template-from="ms-backlinks" data-template-to="item">
+                                            <a data-template="edweb:get-item-link"><span data-template="edweb:get-item-label"/></a>
+                                    </li>
+                                </ul>
+                            </div> -->
+                        </div>
+                        <div class="box graybox filter personen">
+                            <!-- <div data-template="edweb:get-backlink" data-template-backlink-name="text-backlink">
+                                <h3 data-template="edweb:get-backlink-title" data-template-backlink-name="text-backlink"/>
+                                <ul class="boxInner">
+                                    <li data-template="templates:each" data-template-from="text-backlinks" data-template-to="item">
+                                            <a data-template="edweb:get-item-link"><span data-template="edweb:get-item-label"/></a>
+                                    </li>
+                                </ul>
+                            </div> -->
+                        </div>
+                        <div class="box graybox filter">
+                            <div class="boxInner">
+                                <i class="fa fa-external-link"></i>
+                                <a href="http://pinakes.irht.cnrs.fr/notices/cote/id/${./@diktyonID}" data-template="edweb:add-xml-string-to-href">Diese Handschrift in Pinakes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </div><!- - ediarum.weblib:page - -> -->
+    </div>
+</div>

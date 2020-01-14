@@ -1,0 +1,158 @@
+<?xml-stylesheet type="text/xsl" href="custom.xsl"?>
+<TEI ns:doctype="document" xml:id="ed_xsj_4dm_w3b" xmlns="http://www.tei-c.org/ns/1.0"
+    xmlns:ns="http://www.telota.de">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title type="main">Nachrichten aus Hamburg vom 20. Juni 1665 über die Seeschlacht
+                    bei Lowestoft (3./13. Juni 1665)</title>
+                <title type="sub"/>
+            </titleStmt>
+            <publicationStmt>
+                <publisher/>
+                <pubPlace/>
+                <date/>
+            </publicationStmt>
+            <notesStmt>
+                <note type="editorial">
+                    <p>Altsignatur: SUBH sup. ep. 4° 72, S. 245–246, der Text beginnt oben auf f.
+                        125v bzw. S. 246.</p>
+                </note>
+            </notesStmt>
+            <sourceDesc>
+                <msDesc rend="manuscript">
+                    <msIdentifier>
+                        <repository>Staats- und Universitätsbibliothek Hamburg</repository>
+                        <idno>
+                            <idno type="shelfmark">SUBH sup. ep. 4° 72, f. 125r–125v</idno>
+                            <idno type="URLCatalogue"/>
+                            <idno type="URLImages"/>
+                            <idno type="URN"/>
+                        </idno>
+                    </msIdentifier>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <creation> </creation>
+            <langUsage>
+                <language ident="lat"/>
+            </langUsage>
+            <textClass>
+                <classCode scheme="#sbw">Nachrichtenbeilage</classCode>
+            </textClass>
+            <abstract>
+                <p>In <placeName key="Hamburg">Hamburg</placeName> habe man gerade <rs
+                        key="ed_lkl_ftz_kfb" type="term">Nachrichten</rs> aus <placeName
+                        key="ed_as2_nhd_b2b">Amsterdam</placeName> datiert auf den <date
+                        calendar="#Gregorian" when="1665-06-15">15. Juni 1665</date> erhalten, die
+                    über den <rs key="ed_vxr_cy2_3fb" type="term">Zweiten Englisch-Niederländischen
+                        Krieg</rs> handeln und insbesondere Einzelheiten über die <rs
+                        key="ed_ofb_fng_cgb" type="term">Seeschlacht bei Lowestoft</rs> und die
+                    schwere Niederlage der Holländer berichten: Admiral <persName
+                        key="ed_dqg_yng_cgb">Wassenaer Obdam</persName> und der nächsthöhere
+                    Befehlshaber <persName key="ed_tmv_wkm_w3b">Kortenaer</persName> seien im Kampf
+                    getötet worden. Die Schiffe aus den Provinzen <placeName key="ed_b3c_2ks_w3b"
+                        >Seeland</placeName> und <placeName key="ed_ytq_pks_w3b"
+                        >Friesland</placeName> hätten sich dem Oberfehl von <persName
+                        key="ed_gd4_jkm_w3b">Cornelis Tromp</persName> nicht unterstellen wollen und
+                    hätten sich vom Ort der Schlacht entfernt. Tromp habe umgehend den Rat in
+                        <placeName key="u1x_lgx_12b">Den Haag</placeName> benachrichtigt, um
+                    Anweisungen zur Fortsetzung des Kampfes oder zum Rückzug zu erhalten.
+                    Unterdessen seien sie von den Engländern erneut in ein Gefecht verwickelt
+                    worden, bei dem es <persName key="ed_gd4_jkm_w3b">Tromp</persName> gelungen sei,
+                    durchzubrechen und schließlich mit 60 Schiffen in den Hafen von <placeName
+                        key="ed_cgc_knk_wfb">Texel</placeName> zu gelangen. Von verschiedenen Seiten
+                    sei zu vernehmen, dass 10, 15 oder mehr holländische Schiffe untergegangen oder
+                    erbeutet worden seien. Am <date calendar="#Gregorian" when="1665-06-14">14. Juni
+                    </date>sei eine große Explosion zu hören gewesen, die mit dem Einsatz eines
+                    englischen Branders in Verbindung gebracht wird. Auf Seiten der Engländer sei
+                    der <rs key="ed_hnj_qcx_vfb" type="person">Duke of York</rs> verwundet und ein
+                    Schiff mit Geschützen von den Holländern erbeutet worden. Zuverlässigere
+                    Nachrichten stünden noch aus.</p>
+            </abstract>
+        </profileDesc>
+    </teiHeader>
+    <facsimile>
+        <graphic n="122r" url="SUB_Hamburg/00000099.tif"/>
+        <graphic n="122v" url="SUB_Hamburg/00000100.tif"/>
+    </facsimile>
+    <text>
+        <body>
+            <div>
+                <dateline><placeName key="Hamburg">Hamburgi</placeName>
+                    <choice>
+                        <abbr>d.</abbr>
+                        <expan>die</expan>
+                    </choice> 20 Junii 1665</dateline>
+                <p>Accepi heri literas <placeName key="ed_as2_nhd_b2b">Amsterodamo</placeName>
+                    <choice>
+                        <abbr>d.</abbr>
+                        <expan>die</expan>
+                    </choice> 15 <choice>
+                        <abbr>Jun.</abbr>
+                        <expan>Junii</expan>
+                    </choice> scriptas triste nuncium de acerrimo octava ab hinc retro die Sabbathi
+                    commisso Anglos inter et Hollandos navali praelio ferentes<supplied cert="high"
+                        >.</supplied> Referunt autem illae Anglos venti secundi beneficio, ad
+                    ultimum discordia Hollandorum praevaluisse: alioqui locum istis cessuros fuisse.
+                    Postquam enim <persName key="ed_dqg_yng_cgb">Obdamus</persName>, tum et
+                    successor ejus <persName key="ed_tmv_wkm_w3b">Cortenarus</persName>, fortissime
+                    pro patria dimicantes occubuissent, <seg type="comment">
+                        <orig><placeName key="ed_b3c_2ks_w3b">Zelandicae</placeName> et <placeName
+                                key="ed_ytq_pks_w3b">Frisicae</placeName> naves imperio <persName
+                                key="ed_gd4_jkm_w3b">Trompii</persName> ut pote juvenis, subesse
+                            nolentes, die Dominica summo mane a reliquis discesserunt.</orig>
+                        <note xml:id="nmvy_4ys_w3b">Neben Tromp beanspruchte Jan Evertsen den
+                            Oberbefehl über die verbliebene Flotte, s. Hainsworth, Churches, The
+                            Anglo-Dutch Naval Wars, S. 124. </note>
+                    </seg> Quo cum nuncio Trompius confestim <placeName key="u1x_lgx_12b"
+                        >Hagam</placeName> Comitico misit, et simul quid sibi agendum, pugnandum ne
+                    an recedendum pariter sit? Quaesivit: cumque mandatum recedendi accepisset,
+                    interea classis Anglica, quae eum cinxerat, pugnandi necessitatem ip<supplied
+                        cert="high">se</supplied> imposuisse<del rendition="#s">n</del>t assumptis
+                    16 navibus validissimis sexies classem Anglicam fortissime pugnando perrupit, ut
+                    debilioribus navibus viam aperiret. Tandem ad 60<choice>
+                        <sic>.</sic>
+                        <corr type="deleted"/>
+                    </choice> naves feliciter in <placeName key="ed_cgc_knk_wfb">portum
+                        Texellensem</placeName> praesenti periculo subduxit. Aliunde accepi 10<choice>
+                        <sic>.</sic>
+                        <corr type="deleted"/>
+                    </choice> aliunde 15<choice>
+                        <sic>.</sic>
+                        <corr type="deleted"/>
+                    </choice> aliunde plures Hollandicas naves submersas vel captas esse<choice>
+                        <orig>:</orig>
+                        <reg>;</reg>
+                    </choice>
+                    <seg type="comment">
+                        <orig>ad tertium diem qui erat 14 Junii conflictum durasse</orig>
+                        <note xml:id="ntbh_fzs_w3b">Der Beginn der Schlacht, die sich in ihren
+                            entscheidenden Phasen am 3./13. Juni 1665 zutrug, wird hier offenbar
+                            zeitlich mit dem der ersten Sichtung des Gegners gleichgesetzt, obwohl
+                            keine der Parteien am 2./12. Juni den Kampf eröffnete, vgl. die
+                            geschilderten Abläufe bei Hainsworth, Churches, The Anglo-Dutch Naval
+                            Wars, S. 120. </note>
+                    </seg><choice>
+                        <orig>:</orig>
+                        <reg>;</reg>
+                    </choice> imo <pb n="125r"/>illa die 14. Junii explosionis tormentorum auditas esse<choice>
+                        <orig>:</orig>
+                        <reg>;</reg>
+                    </choice> Anglum missis in hostem cum vento secundo pyroclastis instar
+                    praetorianarum navium summo dolo exornatis, ideoque ab Hollando magno impetu
+                    appetitis, maximum damnum hosti intulisse<choice>
+                        <orig>:</orig>
+                        <reg>;</reg>
+                    </choice> nec tamen sibi incruentam victoriam illam stetisse ipsumque <rs
+                        key="ed_hnj_qcx_vfb" type="person">Eboracensem Ducem</rs> vulneratum esse et
+                    unam navim bellicam 46<choice>
+                        <sic>.</sic>
+                        <corr type="deleted"/>
+                    </choice> machinis bellicis majoribus gravem ab Hollandis captam esse. Sed de
+                    his plura certiora amplius expectanda sunt.</p>
+            </div>
+        </body>
+    </text>
+</TEI>

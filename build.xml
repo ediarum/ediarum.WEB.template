@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns:xdb="http://exist-db.org/ant" xmlns:if="ant:if" default="xar" name="ediarum.web.project">
+    <property name="build.dir" value="build" />
+    <property name="exist.dir" value="C:/eXist-db-3-2"/>
+    <property file="project.properties"/>
+
+    <target name="build-and-deploy-to-localhost"/>
+
+    <target name="push-data-to-localhost"/>
+
+    <target name="setup-ediarum.web.project"/>
+
+    <target name="update-build-number">
+        <propertyfile file="build.properties">
+            <entry key="project.version.date" type="date" value="now" pattern="YYMMDD.HHmmss"/>
+        </propertyfile>
+    </target>
+
+    <target name="use-ant-filters" depends="update-build-number">
+        <property file="build.properties"/>
+        <property name="project.version" 
+            value="v${project.version.major}.${project.version.minor}.${project.version.patch}"/>
+        <delete>
+            <fileset dir="">
+                <include name="web/expath-pkg.xml"/>
+            </fileset>
+        </delete>
+        <copy todir=".">
+            <fileset dir="">
+                <include name="web/expath-pkg.xml.ant"/>
+            </fileset>
+            <globmapper from="*.ant" to="*"/>
+            <filterset>
+                <filter token="VERSION" value="${project.version}"/>
+            </filterset>
+        </copy>
+    </target>
+
+    <target name="build-xar" depends="use-ant-filters, update-build-number" description="Build a xar package">
+        <property file="build.properties"/>
+        <property name="project.version" 
+            value="v${project.version.major}.${project.version.minor}.${project.version.patch}"/>
+        <mkdir dir="${build.dir}"/>
+        <zip basedir="web" destfile="${build.dir}/${project.app.name}_${project.version}.${project.version.date}.xar" />
+    </target>
+
+    <path id="classpath.core">
+        <fileset dir="${exist.dir}/lib/core">
+            <include name="*.jar"/>
+        </fileset>
+        <pathelement path="${exist.dir}/exist.jar"/>
+        <pathelement path="${exist.dir}/exist-optional.jar"/>
+    </path>
+    <typedef resource="org/exist/ant/antlib.xml" uri="http://exist-db.org/ant">
+        <classpath refid="classpath.core"/>
+    </typedef>
+
+    <target name="build-and-deploy-to-local" description="Build xar package, upload and install to localhost">
+        <echo message="Building xar package..." />
+        <antcall target="build-xar" />
+        <echo message="Uploading package..." />
+        <property file="build.properties"/>
+        <property name="project.version" 
+            value="v${project.version.major}.${project.version.minor}.${project.version.patch}"/>
+        <xdb:store uri="${server.local.uri}/db/system/repo/" ssl="false" 
+            user="${server.local.user}" password="${server.local.password}" permissions="rwxrwx---">
+            <fileset dir="${build.dir}">
+                <include name="${project.app.name}_${project.version}.${project.version.date}.xar" />
+            </fileset>
+        </xdb:store>
+        <echo message="Installing package..." />
+        <xdb:xquery uri="${server.local.uri}/db" ssl="false" 
+            user="${server.local.user}" password="${server.local.password}" 
+            query="repo:install-and-deploy-from-db('/db/system/repo/${project.app.name}_${project.version}.${project.version.date}.xar')" 
+            outputproperty="deploy.output" />
+        <echo message="${deploy.output}" />
+    </target>
+
+</project>
