@@ -8,10 +8,15 @@
         <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
         <meta http-equiv="pragma" content="no-cache"/>
         <meta data-template="config:app-meta"/>
+        <script src="$base-url/resources/js/popper.min.js"/>
         <link data-template="edweb:add-assets"/>
         <link rel="shortcut icon" href="$base-url/resources/images/beta.png"/>
-        <link rel="stylesheet" type="text/css" href="$base-url/resources/css/fonts.css"/>
-        <link rel="stylesheet" href="$base-url/resources/css/cagb.css"/>
+        <link rel="stylesheet" href="$base-url/resources/css/swb.css"/>
+        <script>
+          $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+          })
+        </script> 
     </head>
     <body>
         <header style="position: fixed; top: 0; width: 100%; z-index: 1000;">
