@@ -13,6 +13,24 @@
             <label type="xpath">.//tei:titleStmt/tei:title[1]/string()</label>
         </item>
         <filters>
+            <filter xml:id="correspPersons">
+                <name>Korrespondenzpartner</name>
+                <type>intersect</type>
+                <root type="xpath">.//tei:correspAction//tei:persName</root>
+                <label-function type="xquery">function($string) { $string }</label-function>
+            </filter>
+            <filter xml:id="correspPlaces">
+                <name>Orte</name>
+                <type>intersect</type>
+                <root type="xpath">.//tei:correspAction//tei:placeName</root>
+                <label-function type="xquery">function($string) { $string }</label-function>
+            </filter>
+            <filter xml:id="correspYear">
+                <name>Jahr</name>
+                <type>union</type>
+                <root type="xpath">.//tei:correspAction//tei:date/@when/subtring(.,1,4)</root>
+                <label-function type="xquery">function($string) { $string }</label-function>
+            </filter>
         </filters>
     </object>
     <object xml:id="personen">

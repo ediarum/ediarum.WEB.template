@@ -16,7 +16,7 @@ edwebcontroller:redirect("/", "index.html"),
 edwebcontroller:generate-path("/index.html", "static-pages/index.html"),
 
 (: Verweise mit Feed :)
-edwebcontroller:view-with-feed("/briefe/index.html", "data-pages/briefe.html", "object-type/briefe"),
+edwebcontroller:view-with-feed("/briefe/index.html", "data-pages/template-list.html", "object-type/briefe"),
 edwebcontroller:view-with-feed("/personen/index.html", "data-pages/personen.html", "object-type/personen"),
 edwebcontroller:view-with-feed("/briefe/", "data-pages/briefe_details.html", "object-type/briefe/id/"),
 edwebcontroller:view-with-feed("/personen/", "data-pages/personen_details.html", "object-type/personen/id/"),
