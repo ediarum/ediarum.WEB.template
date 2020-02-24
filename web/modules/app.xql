@@ -10,35 +10,13 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace functx = "http://www.functx.com";
 declare namespace appconf="http://www.bbaw.de/telota/software/ediarum/web/appconf";
 
-declare function app:test($node as node(), $model as map(*)) as node()* {
-    if (edweb:get-project-status() eq 'test') then
-        <div class="test">
-            <div class="container">
-            <pre>
-                {
-                    "Status: "||edweb:get-project-status()
-                }
-            </pre>
-            </div>
-        </div>
-    else ()
-};
-
-declare function app:do-if-intern($node as node(), $model as map(*)) as node()* {
-    if (edweb:get-project-status()=('intern', 'test')) then
-        <div>
-            {templates:process($node/node(), $model)}
-        </div>
-    else ()
-};
-
 declare function app:data-path($node as node(), $model as map(*)) as node()* {
-    if (edweb:get-project-status() eq 'test') then
+    if ($model?project?status eq 'test') then
         <div class="row">
             <div class="col-md-1"/>
             <div class="col-md-7">
                 <div class="intern small text-secondary">
-                    Dateipfad: {substring-after(document-uri(root(edweb:get-current($model))), "/db/projects/swb/data")}
+                    Dateipfad: {substring-after(document-uri(root($model?current-doc)), "/db/projects/swb/data")}
                 </div>
             </div>
         </div>

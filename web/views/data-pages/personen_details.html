@@ -3,7 +3,7 @@
     <!-- <div data-template="edweb:page"> -->
     <div id="page-header">
       <div class="container">
-        <div data-template="edweb:transform-current" data-template-resource="resources/xslt/personen_metadata.xsl"/>
+        <div data-template="edweb:template-transform-current" data-template-resource="resources/xslt/personen_metadata.xsl"/>
         <div data-template="app:data-path"/> 
       </div>
     </div>
@@ -12,11 +12,7 @@
         <div class="row">
           <div class="col-md-1"/>
           <div class="col-md-7 book-like" id="object-content">
-            <div data-template="edweb:transform-current" data-template-resource="resources/xslt/personen_details.xsl">
-              <div data-template="app:do-if-intern">
-                <param name="intern" value="true"/>
-              </div>
-            </div>
+            <div data-template="edweb:template-transform-current" data-template-resource="resources/xslt/personen_details.xsl"></div>
             <div id="section/relations-msdesc">
               <h3>
                 In folgenden Briefen erwähnt
