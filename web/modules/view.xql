@@ -44,10 +44,4 @@ let $lookup := function($functionName as xs:string, $arity as xs:int) {
 let $content := request:get-data()
 let $result := templates:apply($content, $lookup, (), $config)
 return
-    edweb:expand-links($result, function($string) {
-        if (contains($string, "diktyon-")) then
-            "http://pinakes.irht.cnrs.fr/notices/cote/"||substring-after($string, "diktyon-")
-        else (
-            error(xs:QName("expand-links001"), "There is not object with id: "||$string)
-        )
-    }) 
+    edweb:view-expand-links($result, ()) 
