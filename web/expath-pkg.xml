@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns="http://expath.org/ns/pkg" name="http://www.bbaw.de/telota/software/ediarum/cagb" abbrev="sbw.WEB" version="v0.1.0" spec="1.0">
-    <title>Sozinianischer Briefwechsel</title>
+<package xmlns="http://expath.org/ns/pkg" 
+         name="http://www.bbaw.de/telota/software/ediarum/workshop" 
+         abbrev="workshop.web" 
+         version="v0.2.0.2020-03-64.09-16-06" 
+         spec="1.0">
+    <title>Workshop</title>
     <dependency package="http://exist-db.org/apps/shared"/>
 </package>

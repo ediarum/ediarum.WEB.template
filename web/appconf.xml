@@ -2,6 +2,7 @@
     <project>
         <name>sbw</name>
         <status>test</status>
+        <collection>/db/projects/workshop/data</collection>
     </project>
     <object xml:id="briefe">
         <name>Briefe</name>
@@ -10,28 +11,34 @@
             <namespace id="tei">http://www.tei-c.org/ns/1.0</namespace>
             <root>tei:TEI</root>
             <id>@xml:id</id>
-            <label type="xpath">.//tei:titleStmt/tei:title[1]/string()</label>
+            <label type="xpath">.//tei:titleStmt/tei:title[1]/normalize-space()</label>
         </item>
         <filters>
             <filter xml:id="correspPersons">
                 <name>Korrespondenzpartner</name>
                 <type>intersect</type>
-                <root type="xpath">.//tei:correspAction//tei:persName</root>
+                <xpath>.//tei:correspAction//tei:persName/normalize-space()</xpath>
                 <label-function type="xquery">function($string) { $string }</label-function>
             </filter>
             <filter xml:id="correspPlaces">
                 <name>Orte</name>
                 <type>intersect</type>
-                <root type="xpath">.//tei:correspAction//tei:placeName</root>
+                <xpath>.//tei:correspAction//tei:placeName/normalize-space()</xpath>
                 <label-function type="xquery">function($string) { $string }</label-function>
             </filter>
             <filter xml:id="correspYear">
                 <name>Jahr</name>
                 <type>union</type>
-                <root type="xpath">.//tei:correspAction//tei:date/@when/subtring(.,1,4)</root>
+                <xpath>.//tei:correspAction//tei:date/@when/substring(.,1,4)</xpath>
                 <label-function type="xquery">function($string) { $string }</label-function>
             </filter>
         </filters>
+        <views>
+            <view id="default">
+                <xslt>resources/xslt/briefe_details.xsl</xslt>
+                <label>Standard</label>
+            </view>
+        </views>
     </object>
     <object xml:id="personen">
         <name>Personen</name>
@@ -53,5 +60,30 @@
                 </label-function>
             </filter>
         </filters>
+        <views>
+            <view id="default">
+                <xslt>resources/xslt/personen_details.xsl</xslt>
+                <label>Standard</label>
+            </view>
+        </views>
     </object>
+    <relation xml:id="absender" subject="personen" object="briefe">
+        <name>Absender</name>
+        <collection>/Briefe</collection>
+        <item>
+            <namespace id="tei">http://www.tei-c.org/ns/1.0</namespace>
+            <root>tei:correspAction[@type='sent']/tei:persName</root>
+            <label type="xquery">function ($node as node()) { "Absender" }</label>
+        </item>
+        <subject-condition>
+            function($this as map(*), $subject as map(*)) {
+                $this?xml/@key = $subject?id
+            }
+        </subject-condition>
+        <object-condition>
+            function($this as map(*), $object as map(*)) {
+                $this?absolute-resource-id = $object?absolute-resource-id
+            }
+        </object-condition>
+    </relation>
 </config>

@@ -1,58 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project xmlns:xdb="http://exist-db.org/ant" xmlns:if="ant:if" default="xar" name="ediarum.web.project">
     <property name="build.dir" value="build" />
-    <property name="exist.dir" value="C:/eXist-db-3-2"/>
     <property file="project.properties"/>
-
-    <target name="build-and-deploy-to-localhost"/>
-
-    <target name="push-data-to-localhost"/>
-
-    <target name="setup-ediarum.web.project"/>
-
-    <target name="update-build-number">
-        <propertyfile file="build.properties">
-            <entry key="project.version.date" type="date" value="now" pattern="YYMMDD.HHmmss"/>
-        </propertyfile>
-    </target>
-
-    <target name="use-ant-filters" depends="update-build-number">
-        <property file="build.properties"/>
-        <property name="project.version" 
-            value="v${project.version.major}.${project.version.minor}.${project.version.patch}"/>
-        <delete>
-            <fileset dir="">
-                <include name="web/expath-pkg.xml"/>
-            </fileset>
-        </delete>
-        <copy todir=".">
-            <fileset dir="">
-                <include name="web/expath-pkg.xml.ant"/>
-            </fileset>
-            <globmapper from="*.ant" to="*"/>
-            <filterset>
-                <filter token="VERSION" value="${project.version}"/>
-            </filterset>
-        </copy>
-    </target>
-
-    <target name="build-xar" depends="use-ant-filters, update-build-number" description="Build a xar package">
-        <property file="build.properties"/>
-        <property name="project.version" 
-            value="v${project.version.major}.${project.version.minor}.${project.version.patch}"/>
-        <mkdir dir="${build.dir}"/>
-        <zip basedir="web" destfile="${build.dir}/${project.app.name}_${project.version}.${project.version.date}.xar" />
-    </target>
-
-    <path id="classpath.core">
-        <fileset dir="${exist.dir}/lib/core">
-            <include name="*.jar"/>
-        </fileset>
-        <pathelement path="${exist.dir}/exist.jar"/>
-        <pathelement path="${exist.dir}/exist-optional.jar"/>
-    </path>
-    <typedef resource="org/exist/ant/antlib.xml" uri="http://exist-db.org/ant">
-        <classpath refid="classpath.core"/>
-    </typedef>
+    <import file="common-build-targets.xml"/>
+    <import file="build-xar.xml"/>
 
 </project>

@@ -1,26 +1,83 @@
-<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+<div xmlns="http://www.w3.org/1999/xhtml" 
+  data-template="templates:surround" 
+  data-template-with="templates/page.html" 
+  data-template-at="content">
   <div data-template="edweb:load-current-object">
-    <!-- <div data-template="edweb:page"> -->
     <div id="page-header">
       <div class="container">
-        <div data-template="edweb:template-transform-current" data-template-resource="resources/xslt/personen_metadata.xsl"/>
-        <div data-template="app:data-path"/> 
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-7">
+            <h1><span data-template="edweb:insert-string" 
+              data-template-path="label"></span></h1>
+            <div data-template="edweb:template-transform-current" 
+              data-template-resource="resources/xslt/personen_metadata.xsl"></div>
+          </div>
+        </div>
       </div>
     </div>
     <div id="page-content">
       <div class="container">
         <div class="row">
-          <div class="col-md-1"/>
+          <div class="col-md-1"></div>
           <div class="col-md-7 book-like" id="object-content">
-            <div data-template="edweb:template-transform-current" data-template-resource="resources/xslt/personen_details.xsl"></div>
+            <div data-template="edweb:template-transform-current"></div>
             <div id="section/relations-msdesc">
               <h3>
-                In folgenden Briefen erwähnt
+                Absender folgender Briefe:
               </h3>
+              <div data-template="edweb:load-relations-for-subject" 
+                data-template-relation="absender">
+                <div data-template="edweb:template-switch">
+                  <switch><span data-template="edweb:insert-count" 
+                    data-template-from="relations"></span></switch>
+                  <p case="0">Keine Briefe vorhanden.</p>
+                  <span case="default">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Titel</th>
+                          <th scope="col">Kontextrolle</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <div data-template="templates:each" 
+                          data-template-from="relations" 
+                          data-template-to="item">
+                          <tr>
+                            <td><a data-template="edweb:template-detail-link" 
+                              data-template-from="item">
+                              <span data-template="edweb:insert-string" 
+                              data-template-path="item?label"></span></a></td>
+                            <td><span data-template="edweb:insert-string" 
+                              data-template-path="item?predicate"></span></td>
+                          </tr>
+                        </div>
+                      </tbody>
+                    </table>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-md-1"/>
+          <div class="col-md-1"></div>
           <div class="col-md-3">
+            <!-- <div class="box graybox filter">
+              <div data-template="edweb:load-inner-navigation" data-template-inner-navigation-name="section">
+                <h3>
+                  <span data-template="edweb:insert-string" data-template-path="inner-navigation-name"/>
+                </h3>
+                <div class="boxInner">
+                  <ul>
+                    <li data-template="templates:each" data-template-from="inner-navigation-items" data-template-to="item">
+                      <a href="#${inner-navigation-id}/${item?id}" data-template="edweb:template-add-string-to-href">
+                        <span data-template="edweb:insert-string" data-template-path="item?label"/>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
           </div>
         </div>
       </div>
