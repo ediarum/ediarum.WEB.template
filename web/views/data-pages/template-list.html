@@ -40,10 +40,21 @@
                 <ul class="square-list">
                   <div data-template="templates:each" 
                     data-template-from="show" data-template-to="item">
-                    <li><a data-template="edweb:template-detail-link" data-template-from="item">
-                      <span class="theme-color" data-template="edweb:insert-string" 
-                        data-template-path="item?label"></span>
-                    </a></li>
+                    <li>
+                      <a data-template="edweb:template-detail-link" data-template-from="item">
+                        <span data-template="edweb:template-switch">
+                          <switch><span class="theme-color" data-template="edweb:insert-string" data-template-path="item?label-pos"></span></switch>
+                          <span case="1"><span class="theme-color" data-template="edweb:insert-string" data-template-path="item?label"></span></span>
+                          <span case="default">
+                            <span class="theme-color font-italic">
+                              <span data-template="edweb:insert-string" data-template-path="item?label"></span>
+                              <i class="mx-2 fa fa-long-arrow-right" aria-hidden="true"></i>
+                              <span data-template="edweb:insert-string" data-template-path="item?labels?1"></span>
+                            </span>
+                          </span>  
+                        </span>
+                      </a>
+                    </li>
                   </div>
                 </ul>
               </div>

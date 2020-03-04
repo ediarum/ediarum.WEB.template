@@ -19,13 +19,13 @@
         </script> 
     </head>
     <body>
-        <header style="position: fixed; top: 0; width: 100%; z-index: 1000;">
+        <header>
             <div class="page-title d-none d-sm-block">
                 <img class="beta" src="$base-url/resources/images/beta.png"/>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-1"/>
-                        <div class="col">Bibelexegese</div>
+                        <div class="col">Workshop</div>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="container">
                     <div class="navbar-brand page-title d-block d-sm-none">
                         <img class="beta" src="$base-url/resources/images/beta.png"/>
-                        <span>SWB</span>
+                        <span>Workshop</span>
                     </div>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
                         <span class="navbar-toggler-icon"/>
@@ -45,19 +45,14 @@
                             <li class="nav-item">
                                 <a class="nav-link fa fa-home" href="$base-url/index.html"/>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="$base-url/briefe/index.html">Briefe</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="$base-url/personen/index.html">Personen</a>
-                            </li>
+                            <li data-template="edweb:add-main-nav"></li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </header>
 
-        <div id="content" style="margin-top: 84px"/>
+        <div id="content" />
 
         <footer>
             <div class="container">

@@ -16,13 +16,12 @@ edwebcontroller:redirect("/", "index.html"),
 edwebcontroller:generate-path("/index.html", "static-pages/index.html"),
 
 (: Verweise mit Feed :)
-edwebcontroller:view-with-feed("/briefe/index.html", "data-pages/template-list.html", "object-type/briefe"),
-edwebcontroller:view-with-feed("/briefe/", "data-pages/template-details.html", "object-type/briefe/id/"),
-edwebcontroller:view-with-feed("/briefe1/", "data-pages/briefe-details.html", "object-type/briefe/id/"),
+(: edwebcontroller:view-with-feed("/briefe/", "data-pages/briefe-details.html", "object-type/briefe/id/"), :)
 
-edwebcontroller:view-with-feed("/personen/index.html", "data-pages/personen.html", "object-type/personen"),
-edwebcontroller:view-with-feed("/personen/", "data-pages/personen-details.html", "object-type/personen/id/"),
+(: edwebcontroller:view-with-feed("/personen/index.html", "data-pages/personen.html", "object-type/personen"), :)
+(: edwebcontroller:view-with-feed("/personen/", "data-pages/personen-details.html", "object-type/personen/id/"), :)
 
+edwebcontroller:generate-routing("data-pages/template-list.html","data-pages/template-details.html"),
 (: API :)
 edwebcontroller:generate-api(),
 (: Der Rest wird durchgereicht :)
