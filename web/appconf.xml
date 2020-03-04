@@ -14,10 +14,10 @@
             <label type="xpath">.//tei:titleStmt/tei:title[1]/normalize-space()</label>
         </item>
         <filters>
-            <filter xml:id="correspPersons">
-                <name>Korrespondenzpartner</name>
-                <type>intersect</type>
-                <xpath>.//tei:correspAction//tei:persName/normalize-space()</xpath>
+            <filter xml:id="correspYear">
+                <name>Jahr</name>
+                <type>union</type>
+                <xpath>.//tei:correspAction//tei:date/@when/substring(.,1,4)</xpath>
                 <label-function type="xquery">function($string) { $string }</label-function>
             </filter>
             <filter xml:id="correspPlaces">
@@ -26,10 +26,10 @@
                 <xpath>.//tei:correspAction//tei:placeName/normalize-space()</xpath>
                 <label-function type="xquery">function($string) { $string }</label-function>
             </filter>
-            <filter xml:id="correspYear">
-                <name>Jahr</name>
-                <type>union</type>
-                <xpath>.//tei:correspAction//tei:date/@when/substring(.,1,4)</xpath>
+            <filter xml:id="correspPersons">
+                <name>Korrespondenzpartner</name>
+                <type>intersect</type>
+                <xpath>.//tei:correspAction//tei:persName/normalize-space()</xpath>
                 <label-function type="xquery">function($string) { $string }</label-function>
             </filter>
         </filters>
@@ -39,6 +39,12 @@
                 <label>Standard</label>
             </view>
         </views>
+        <parts separator="." prefix="-">
+            <part xml:id="page" starts-with="p">
+                <root>tei:milestone[@type='page']</root>
+                <id>./@n</id>
+            </part>
+        </parts>
     </object>
     <object xml:id="personen">
         <name>Personen</name>

@@ -4,6 +4,30 @@
   data-template-at="content">
   <div data-template="edweb:load-current-object">
     <div id="page-header">
+      <div data-template="edweb:load-objects">
+        <nav class="py-0 bg-white navbar navbar-expand-sm navbar-white">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarBlaettern" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="col-md-1"></div>
+                <div class="p-0 breadcrumb collapse navbar-collapse" id="navbarBlaettern">
+                    <ul class="mr-auto navbar-nav">
+                        <li class="nav-item">
+                            <a data-template="edweb:add-link-to-prev-object"></a>
+                        </li>
+                    </ul>
+                    <ol data-template="edweb:add-breadcrumb-items" data-template-filter="alphabet"></ol>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a data-template="edweb:add-link-to-next-object"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </nav>
+      </div>
       <div class="container">
         <div class="row">
           <div class="col-md-1"></div>

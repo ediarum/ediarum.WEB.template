@@ -1,6 +1,6 @@
 <?xml-stylesheet type="text/xsl" href="custom.xsl"?>
-<TEI ns:doctype="document" xml:id="ed_xsj_4dm_w3b" xmlns="http://www.tei-c.org/ns/1.0"
-    xmlns:ns="http://www.telota.de">
+<TEI xml:id="ed_xsj_4dm_w3b" xmlns="http://www.tei-c.org/ns/1.0"
+    >
     <teiHeader>
         <fileDesc>
             <titleStmt>
@@ -80,6 +80,7 @@
     <text>
         <body>
             <div>
+                <milestone type="page" n="1"/>
                 <dateline><placeName key="Hamburg">Hamburgi</placeName>
                     <choice>
                         <abbr>d.</abbr>
@@ -130,6 +131,7 @@
                         <orig>ad tertium diem qui erat 14 Junii conflictum durasse</orig>
                         <note xml:id="ntbh_fzs_w3b">Der Beginn der Schlacht, die sich in ihren
                             entscheidenden Phasen am 3./13. Juni 1665 zutrug, wird hier offenbar
+                            <milestone type="page" n="2"/>
                             zeitlich mit dem der ersten Sichtung des Gegners gleichgesetzt, obwohl
                             keine der Parteien am 2./12. Juni den Kampf eröffnete, vgl. die
                             geschilderten Abläufe bei Hainsworth, Churches, The Anglo-Dutch Naval

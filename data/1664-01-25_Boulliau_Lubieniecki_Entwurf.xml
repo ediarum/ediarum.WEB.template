@@ -1,4 +1,4 @@
-<?xml-stylesheet type="text/xsl" href="custom.xsl"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:ns="http://www.telota.de" ns:doctype="letter" xml:id="c5z_vfl_d3b">
+<?xml-stylesheet type="text/xsl" href="custom.xsl"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="c5z_vfl_d3b">
     <teiHeader>
         <fileDesc>
             <titleStmt>
@@ -74,6 +74,7 @@
     <text>
         <body>
             <div type="letter">
+                <milestone type="page" n="1"/>
                 <head/>
                 <opener>
                     <dateline/>
@@ -173,7 +174,8 @@
                         </choice> a <rs key="#ed_pfc_31d_kfb" type="place">Turcis</rs>
                         oppressa</add> Caesar occidit: <add place="superlinear">et ad praesentissimum
                         periculum Christiani adducantur.</add> Avertat tantam calamitatem Deus;
-                    Spiritum concordiae omnibus infundat, cunctorumque collectis viribus <del rendition="#s">vict</del> ac copiis victoriam de hostibus largiatur. Tot
+                        <milestone type="page" n="2"/>
+                        Spiritum concordiae omnibus infundat, cunctorumque collectis viribus <del rendition="#s">vict</del> ac copiis victoriam de hostibus largiatur. Tot
                     capitum, quae <placeName key="Regensburg">Ratisbonae</placeName> simul
                     convenerunt, sensus non bene consentientes, et ad prompte utiliterque <choice>
                         <abbr>Reip.</abbr>
@@ -215,7 +217,9 @@
                     </del> vicinorum hostium formido ad id forsan Proceres <subst>
                         <del rendition="#s">ad</del>
                         <add place="superlinear">in</add>
-                    </subst>ducet, ut interregni incommodis ac periculis <add place="superlinear">quae
+                    </subst>ducet, ut interregni             
+                    <milestone type="page" n="3"/>
+                    incommodis ac periculis <add place="superlinear">quae
                         nunc regno creari queunt</add> obviam eant, et turbas futuras antevertant
                     quicquid erit, <del rendition="#s">lib</del> nisi liberis liberrimae gentis <del rendition="#s">con<gap quantity="3" unit="chars"/>
                     </del> suffragiis, ac consensu quisquam sceptrum <rs key="#Polen" type="place">Polonicum</rs> non adsequetur et obtinebit. Hisce vero temporibus crescente

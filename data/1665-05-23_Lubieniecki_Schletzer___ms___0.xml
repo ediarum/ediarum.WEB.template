@@ -1,4 +1,4 @@
-<?xml-stylesheet type="text/xsl" href="custom.xsl"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:ns="http://www.telota.de" ns:doctype="letter" xml:id="psy_vcc_b2b">
+<?xml-stylesheet type="text/xsl" href="custom.xsl"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="psy_vcc_b2b">
     <teiHeader>
         <fileDesc>
             <titleStmt>
@@ -91,6 +91,7 @@
     <text>
         <body>
             <div type="letter">
+                <milestone type="page" n="1"/>
                 <opener>
                     <pb facs="SUB_Hamburg/00000052.tif" n="87v"/>
                     <address>
@@ -162,6 +163,7 @@
                         </choice></dateline>
                 </closer>
             </div>
+            <milestone type="page" n="2"/>
             <pb facs="SUB_Hamburg/00000052.tif" n="87v"/>
             <note hand="#addressee" type="receipt"><choice>
                     <abbr>dat.</abbr>
