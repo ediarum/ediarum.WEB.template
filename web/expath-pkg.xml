@@ -2,7 +2,7 @@
 <package xmlns="http://expath.org/ns/pkg" 
          name="http://www.bbaw.de/telota/software/ediarum/workshop" 
          abbrev="workshop.web" 
-         version="v0.2.0.2020-03-64.13-20-47" 
+         version="v0.2.0.2020-03-64.15-53-57" 
          spec="1.0">
     <title>Workshop</title>
     <dependency package="http://exist-db.org/apps/shared"/>
