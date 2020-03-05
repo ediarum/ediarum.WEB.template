@@ -65,6 +65,24 @@
                     function($string) {substring(replace(normalize-space($string), '^\(', ''),1,1)}
                 </label-function>
             </filter>
+            <filter xml:id="birth">
+                <name>Geburtsjahr</name>
+                <type>single</type>
+                <xpath>.//tei:birth/normalize-space()</xpath>
+                <label-function type="xquery">
+                    function($string) {
+                        if (matches($string, "(v\. Chr\.)|(v\. Chr)|(vor Christi)"))
+                        then "- v. Chr."
+                        else if (matches($string, "(n\. Chr\.)|([^\d]\d\d\d?[^\d])|(^\d\d?\d?$)|([^\d]\d\d\d?$)"))
+                        then "1. Jahrtausend"
+                        else if (matches($string, "1[0123]\d\d"))
+                        then "11.-14. Jh."
+                        else if (matches($string, "(1[4567]\d\d)|(1[67]\. Jh\.)"))
+                        then "15.-17. Jh."
+                        else $string
+                    }
+                </label-function>
+            </filter>
         </filters>
         <views>
             <view id="default">
