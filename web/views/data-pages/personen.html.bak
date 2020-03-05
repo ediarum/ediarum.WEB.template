@@ -63,8 +63,7 @@
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-3">
-            <div data-template="edweb:load-filter" 
-            data-template-filter-name="alphabet">
+            <div data-template="edweb:load-filter" data-template-filter-name="alphabet">
               <div class="box graybox filter">
                 <h3><span data-template="edweb:insert-string"
                   data-template-path="filter?name"></span></h3>

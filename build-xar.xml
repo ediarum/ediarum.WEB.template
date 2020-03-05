@@ -32,7 +32,7 @@
         <delete dir="${build.dir}"/>
         <mkdir dir="${build.dir}"/>
         <zip basedir="${project.app.folder}" destfile="${build.dir}/${project.app.name}_${project.version}.${project.version.date}.xar"
-             excludes="${build.dir}/*, temp/**, project.properties"/>
+             excludes="${build.dir}/*, temp/**, project.properties, **/*.bak"/>
     </target>
 
     <path id="classpath.core">

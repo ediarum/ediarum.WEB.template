@@ -1,0 +1,112 @@
+<config xmlns="http://www.bbaw.de/telota/software/ediarum/web/appconf">
+    <project>
+        <name>Workshop</name>
+        <status>test</status>
+        <collection>/db/projects/workshop/data</collection>
+    </project>
+    <object xml:id="briefe">
+        <name>Briefe</name>
+        <collection>/Briefe</collection>
+        <item>
+            <namespace id="tei">http://www.tei-c.org/ns/1.0</namespace>
+            <root>tei:TEI</root>
+            <id>@xml:id</id>
+            <label type="xpath">.//tei:titleStmt/tei:title[1]/normalize-space()</label>
+        </item>
+        <filters>
+            <filter xml:id="correspYear">
+                <name>Jahr</name>
+                <type>union</type>
+                <xpath>.//tei:correspAction//tei:date/@when/substring(.,1,4)</xpath>
+                <label-function type="xquery">function($string) { $string }</label-function>
+            </filter>
+            <filter xml:id="correspPlaces">
+                <name>Orte</name>
+                <type>intersect</type>
+                <xpath>.//tei:correspAction//tei:placeName/normalize-space()</xpath>
+                <label-function type="xquery">function($string) { $string }</label-function>
+            </filter>
+            <filter xml:id="correspPersons">
+                <name>Korrespondenzpartner</name>
+                <type>intersect</type>
+                <xpath>.//tei:correspAction//tei:persName/normalize-space()</xpath>
+                <label-function type="xquery">function($string) { $string }</label-function>
+            </filter>
+        </filters>
+        <views>
+            <view id="default">
+                <xslt>resources/xslt/briefe_details.xsl</xslt>
+                <label>Standard</label>
+            </view>
+        </views>
+        <parts separator="." prefix="-">
+            <part xml:id="page" starts-with="p">
+                <root>tei:milestone[@type='page']</root>
+                <id>./@n</id>
+            </part>
+        </parts>
+    </object>
+    <object xml:id="personen">
+        <name>Personen</name>
+        <collection>/Register</collection>
+        <item>
+            <namespace id="tei">http://www.tei-c.org/ns/1.0</namespace>
+            <root>tei:person</root>
+            <id>./@xml:id</id>
+            <label type="xpath">.//tei:persName/normalize-space()</label>
+        </item>
+        <filters>
+            <filter xml:id="alphabet">
+                <name>alphabetisch</name>
+                <type>single</type>
+                <root type="label"/>
+                <label-function type="xquery">
+                    function($string) {substring(replace(normalize-space($string), '^\(', ''),1,1)}
+                </label-function>
+            </filter>
+            <filter xml:id="birth">
+                <name>Geburtsjahr</name>
+                <type>single</type>
+                <xpath>.//tei:birth/normalize-space()</xpath>
+                <label-function type="xquery">
+                    function($string) {
+                        if (matches($string, "(v\. Chr\.)|(v\. Chr)|(vor Christi)"))
+                        then "- v. Chr."
+                        else if (matches($string, "(n\. Chr\.)|([^\d]\d\d\d?[^\d])|(^\d\d?\d?$)|([^\d]\d\d\d?$)"))
+                        then "1. Jahrtausend"
+                        else if (matches($string, "1[0123]\d\d"))
+                        then "11.-14. Jh."
+                        else if (matches($string, "(1[4567]\d\d)|(1[67]\. Jh\.)"))
+                        then "15.-17. Jh."
+                        else $string
+                    }
+                </label-function>
+            </filter>
+        </filters>
+        <views>
+            <view id="default">
+                <xslt>resources/xslt/personen_details.xsl</xslt>
+                <label>Standard</label>
+            </view>
+        </views>
+    </object>
+    <relation xml:id="absender" subject="personen" object="briefe">
+        <name>Absender</name>
+        <collection>/Briefe</collection>
+        <item>
+            <namespace id="tei">http://www.tei-c.org/ns/1.0</namespace>
+            <root>tei:correspAction[@type='sent']/tei:persName</root>
+            <label type="xquery">function ($node as node()) { "Absender" }</label>
+        </item>
+        <subject-condition>
+            function($this as map(*), $subject as map(*)) {
+                $this?xml/@key = $subject?id
+            }
+        </subject-condition>
+        <object-condition>
+            function($this as map(*), $object as map(*)) {
+                $this?absolute-resource-id = $object?absolute-resource-id
+            }
+        </object-condition>
+    </relation>
+</config>
