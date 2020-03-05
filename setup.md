@@ -388,39 +388,43 @@ Ansicht und ein seitenweises Blättern eingerichtet werden.
 
 ### Eigenen Code einbinden
 
-- In der Datei `briefe-details.html` in Zeile 45 bis 52
+- In der Datei `briefe-details.html` in Zeile 45 bis 53
   
     ```XML
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-7 book-like" id="object-content">
+      <div class="col-md-1"></div>
+      <div class="col-md-7 book-like" id="object-content">
         <div data-template="edweb:template-transform-current"></div>
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-3">
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+      </div>
     </div>
     ```
+    
     ersetzen durch
+
     ```XML
     <div class="row" data-template="app:add-page-id">
-        <div data-template="app:load-parts" data-template-part="page">
+      <div data-template="app:load-parts" data-template-part="page">
         <div data-template="app:load-page">
-            <div class="col-6 box whitebox page-height">
+          <div class="col-6 box whitebox page-height">
             <div class="nav-scroller py-1 mb-2">
-                <nav class="nav d-flex justify-content-center">
-                    <div data-template="app:select-page"></div>
-                </nav>
+              <nav class="nav d-flex justify-content-center">
+                <div data-template="app:select-page"></div>
+              </nav>
             </div>
             <div data-template="app:transform" 
                 data-template-from="part" 
                 data-template-resource="resources/xslt/briefe_details.xsl"></div>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-5 box whitebox page-height">
+          </div>
+          <div class="col-1"></div>
+          <div class="col-5 box whitebox page-height">
             <div data-template="edweb:template-transform-current" 
                 data-template-resource="resources/xslt/briefe_abstract.xsl"></div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
     ```
 
