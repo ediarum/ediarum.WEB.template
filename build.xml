@@ -5,4 +5,18 @@
     <import file="common-build-targets.xml"/>
     <import file="build-xar.xml"/>
 
+    <target name="openapi-test" description="Generate a OPENAPI.yml from the appconf.xml">
+        <delete file="documentation/openapi.yml"/>
+        <xslt in="documentation/appconf_example.xml" out="documentation/openapi.xml" style="documentation/appconf2openapi.xsl"/>
+        <xslt in="documentation/openapi.xml" out="documentation/openapi.yml" style="documentation/xml2yml.xsl"/>
+        <delete file="documentation/openapi.xml"/>
+    </target>
+
+    <target name="openapi" description="Generate a OPENAPI.yml from the appconf.xml">
+        <delete file="documentation/openapi.yml"/>
+        <xslt in="web/appconf.xml" out="documentation/openapi.xml" style="documentation/appconf2openapi.xsl"/>
+        <xslt in="documentation/openapi.xml" out="documentation/openapi.yml" style="documentation/xml2yml.xsl"/>
+        <delete file="documentation/openapi.xml"/>
+    </target>
+
 </project>

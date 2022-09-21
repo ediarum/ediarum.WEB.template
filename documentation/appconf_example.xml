@@ -3,8 +3,10 @@
 <config xmlns="http://www.bbaw.de/telota/software/ediarum/web/appconf">
     <project>
         <name>Bibelexegese</name>
-        <status>test</status>
+        <description></description>
+        <version>1.0</version>
         <collection>/db/projects/bibelexegese/data</collection>
+        <server status="test">localhost:8080</server>
     </project>
     
     <object xml:id="pta">
