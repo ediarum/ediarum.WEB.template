@@ -1,7 +1,7 @@
 <config xmlns="http://www.bbaw.de/telota/software/ediarum/web/appconf">
     <project>
-        <name>Workshop</name>
+        <name>PROJECT</name>
         <status>test</status>
-        <collection>/db/projects/workshop/data</collection>
+        <collection>/db/projects/project/data</collection>
     </project>
 </config>
