@@ -6,7 +6,7 @@ xquery version "3.0";
  :)
 module namespace config="http://www.bbaw.de/telota/software/ediarum/WEB";
 
-declare namespace templates="http://exist-db.org/xquery/templates";
+import module namespace templates="http://exist-db.org/xquery/html-templating";
 
 declare namespace repo="http://exist-db.org/xquery/repo";
 declare namespace expath="http://expath.org/ns/pkg";
@@ -100,7 +100,13 @@ declare function config:app-info($node as node(), $model as map(*)) {
 };
 
 declare %templates:wrap function config:title($node as node(), $model as map(*)) {
-    $config:expath-descriptor/expath:title/text()||" - Title Addon"
+        let $label := $model?label
+    let $label := 
+        if ($label||"" = "")
+        then ""
+        else " - "||$label
+    return
+        $config:expath-descriptor/expath:title/text()||$label
 };
 
 declare %templates:wrap function config:short-title($node as node(), $model as map(*)) {
