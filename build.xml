@@ -39,33 +39,16 @@
         </propertyfile>
     </target>
 
-    <target name="update-build-date">
-        <propertyfile file="build.properties">
-            <entry key="project.version.date" type="date" value="now" pattern="YYYY-MM-DD.HH-mm-ss"/>
-        </propertyfile>
-    </target>
-
-    <target name="update-project-version"  depends="update-build-date">
-        <property file="build.properties"/>
-        <property name="project.version" 
-            value="v${project.version.major}.${project.version.minor}.${project.version.patch}"/>        
-        <echo message="Version: ${project.version}"/>
-        <echo message="Date: ${project.version.date}"/>
-        <!-- <echo message="Repository: ${repository.version}"/> -->
-        </target>
-
     <target name="show-version" description="Echo the version number">
         <property file="build.properties"/>
-        <property name="project.version" 
-            value="v${project.version.major}.${project.version.minor}.${project.version.patch}"/>        
+        <property name="project.version"
+            value="v${project.version.major}.${project.version.minor}.${project.version.patch}"/>
         <echo message="Version: ${project.version}"/>
-        <echo message="Date: ${project.version.date}"/>
-        <!-- <echo message="Repository: ${repository.version}"/> -->
     </target>
 
     <!-- Targets for project web app -->
 
-    <target name="use-ant-filters" depends="update-project-version">
+    <target name="use-ant-filters" depends="show-version">
         <delete>
             <fileset dir="${project.app.folder}">
                 <include name="expath-pkg.xml"/>
@@ -78,7 +61,7 @@
             </fileset>
             <globmapper from="*.ant" to="*"/>
             <filterset>
-                <filter token="VERSION" value="${project.version}.${project.version.date}"/>
+                <filter token="VERSION" value="${project.version}"/>
                 <filter token="PROJECTNAME" value="${project.name}"/>
                 <filter token="PROJECTAUTHOR" value="${project.author}"/>
                 <filter token="PROJECTAPPNAME" value="${project.app.name}"/>
@@ -87,10 +70,10 @@
         </copy>
     </target>
 
-    <target name="build-xar" depends="use-ant-filters, update-project-version" description="Build a xar-package of WEB">
+    <target name="build-xar" depends="use-ant-filters, show-version" description="Build a xar-package of WEB">
         <delete dir="${build.dir}"/>
         <mkdir dir="${build.dir}"/>
-        <zip basedir="${project.app.folder}" destfile="${build.dir}/${project.app.name}_${project.version}.${project.version.date}.xar"
+        <zip basedir="${project.app.folder}" destfile="${build.dir}/${project.app.name}_${project.version}.xar"
              excludes="${build.dir}/*, temp/**, project.properties, **/*.bak"/>
     </target>
 
@@ -110,13 +93,13 @@
         <xdb:store uri="${server.uri}/db/system/repo/" ssl="${server.ssl}" 
             user="${server.user}" password="${server.password}" permissions="rwxrwx---">
             <fileset dir="${build.dir}">
-                <include name="${project.app.name}_${project.version}.${project.version.date}.xar" />
+                <include name="${project.app.name}_${project.version}.xar" />
             </fileset>
         </xdb:store>
         <echo message="Installing package..." />
         <xdb:xquery uri="${server.uri}/db" ssl="${server.ssl}" 
             user="${server.user}" password="${server.password}" 
-            query="repo:install-and-deploy-from-db('/db/system/repo/${project.app.name}_${project.version}.${project.version.date}.xar')" 
+            query="repo:install-and-deploy-from-db('/db/system/repo/${project.app.name}_${project.version}.xar')" 
             outputproperty="deploy.output" />
         <echo message="${deploy.output}" />
     </target>
