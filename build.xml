@@ -2,7 +2,134 @@
 <project xmlns:xdb="http://exist-db.org/ant" xmlns:if="ant:if" default="xar" name="ediarum.web.project">
     <property name="build.dir" value="build" />
     <property file="project.properties"/>
-    <import file="common-build-targets.xml"/>
-    <import file="build-xar.xml"/>
+
+    <target name="openapi-test" description="Generate a OPENAPI.yml from the appconf.xml">
+        <delete file="documentation/openapi.yml"/>
+        <xslt in="documentation/appconf_example.xml" out="documentation/openapi.xml" style="documentation/appconf2openapi.xsl"/>
+        <xslt in="documentation/openapi.xml" out="documentation/openapi.yml" style="documentation/xml2yml.xsl"/>
+        <delete file="documentation/openapi.xml"/>
+    </target>
+
+    <target name="openapi" description="Generate a OPENAPI.yml from the appconf.xml">
+        <delete file="documentation/openapi.yml"/>
+        <xslt in="web/appconf.xml" out="documentation/openapi.xml" style="documentation/appconf2openapi.xsl"/>
+        <xslt in="documentation/openapi.xml" out="documentation/openapi.yml" style="documentation/xml2yml.xsl"/>
+        <delete file="documentation/openapi.xml"/>
+    </target>
+
+    <!-- common build targets -->
+    <target name="increase-patch" description="Increase patch number">
+        <propertyfile file="build.properties">
+            <entry key="project.version.patch" type="int" operation="+" value="1" pattern="0"/>
+        </propertyfile>
+    </target>
+
+    <target name="increase-minor" description="Increase minor number">
+        <propertyfile file="build.properties">
+            <entry key="project.version.minor" type="int" operation="+" value="1" pattern="0"/>
+            <entry key="project.version.patch" type="int" value="0" pattern="0"/>
+        </propertyfile>
+    </target>
+
+    <target name="increase-major" description="Increase major number">
+        <propertyfile file="build.properties">
+            <entry key="project.version.major" type="int" operation="+" value="1" pattern="0"/>
+            <entry key="project.version.minor" type="int" value="0" pattern="0"/>
+            <entry key="project.version.patch" type="int" value="0" pattern="0"/>
+        </propertyfile>
+    </target>
+
+    <target name="update-build-date">
+        <propertyfile file="build.properties">
+            <entry key="project.version.date" type="date" value="now" pattern="YYYY-MM-DD.HH-mm-ss"/>
+        </propertyfile>
+    </target>
+
+    <target name="update-project-version"  depends="update-build-date">
+        <property file="build.properties"/>
+        <property name="project.version" 
+            value="v${project.version.major}.${project.version.minor}.${project.version.patch}"/>        
+        <echo message="Version: ${project.version}"/>
+        <echo message="Date: ${project.version.date}"/>
+        <!-- <echo message="Repository: ${repository.version}"/> -->
+        </target>
+
+    <target name="show-version" description="Echo the version number">
+        <property file="build.properties"/>
+        <property name="project.version" 
+            value="v${project.version.major}.${project.version.minor}.${project.version.patch}"/>        
+        <echo message="Version: ${project.version}"/>
+        <echo message="Date: ${project.version.date}"/>
+        <!-- <echo message="Repository: ${repository.version}"/> -->
+    </target>
+
+    <!-- Targets for project web app -->
+
+    <target name="use-ant-filters" depends="update-project-version">
+        <delete>
+            <fileset dir="${project.app.folder}">
+                <include name="expath-pkg.xml"/>
+            </fileset>
+        </delete>
+        <copy todir="${project.app.folder}">
+            <fileset dir="${project.app.folder}">
+                <include name="expath-pkg.xml.ant"/>
+                <include name="repo.xml.ant"/>
+            </fileset>
+            <globmapper from="*.ant" to="*"/>
+            <filterset>
+                <filter token="VERSION" value="${project.version}.${project.version.date}"/>
+                <filter token="PROJECTNAME" value="${project.name}"/>
+                <filter token="PROJECTAUTHOR" value="${project.author}"/>
+                <filter token="PROJECTAPPNAME" value="${project.app.name}"/>
+                <filter token="PROJECTAPPPACKAGE" value="${project.app.package}"/>
+            </filterset>
+        </copy>
+    </target>
+
+    <target name="build-xar" depends="use-ant-filters, update-project-version" description="Build a xar-package of WEB">
+        <delete dir="${build.dir}"/>
+        <mkdir dir="${build.dir}"/>
+        <zip basedir="${project.app.folder}" destfile="${build.dir}/${project.app.name}_${project.version}.${project.version.date}.xar"
+             excludes="${build.dir}/*, temp/**, project.properties, **/*.bak"/>
+    </target>
+
+    <path id="classpath.core">
+        <fileset dir="${exist.dir}/lib/core">
+            <include name="*.jar"/>
+        </fileset>
+        <pathelement path="${exist.dir}/exist.jar"/>
+        <pathelement path="${exist.dir}/exist-optional.jar"/>
+    </path>
+    <typedef resource="org/exist/ant/antlib.xml" uri="http://exist-db.org/ant">
+        <classpath refid="classpath.core"/>
+    </typedef>
+
+    <target name="deploy-app">
+        <echo message="Uploading package..." />
+        <xdb:store uri="${server.uri}/db/system/repo/" ssl="${server.ssl}" 
+            user="${server.user}" password="${server.password}" permissions="rwxrwx---">
+            <fileset dir="${build.dir}">
+                <include name="${project.app.name}_${project.version}.${project.version.date}.xar" />
+            </fileset>
+        </xdb:store>
+        <echo message="Installing package..." />
+        <xdb:xquery uri="${server.uri}/db" ssl="${server.ssl}" 
+            user="${server.user}" password="${server.password}" 
+            query="repo:install-and-deploy-from-db('/db/system/repo/${project.app.name}_${project.version}.${project.version.date}.xar')" 
+            outputproperty="deploy.output" />
+        <echo message="${deploy.output}" />
+    </target>
+
+    <target name="build-and-deploy-to-localhost" description="Build xar package, upload and install to localhost">
+        <echo message="Building xar package..." />
+        <antcall target="build-xar" />
+        <antcall target="deploy-app">
+            <param name="server.uri" value="${server.local.uri}" />
+            <param name="server.user" value="${server.local.user}" />
+            <param name="server.password" value="${server.local.password}" />
+            <param name="server.ssl" value="false" />
+        </antcall>
+    </target>
 
 </project>
