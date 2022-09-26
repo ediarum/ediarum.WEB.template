@@ -3,18 +3,11 @@
     <property name="build.dir" value="build" />
     <property file="project.properties"/>
 
-    <target name="openapi-test" description="Generate a OPENAPI.yml from the appconf.xml">
-        <delete file="documentation/openapi.yml"/>
-        <xslt in="documentation/appconf_example.xml" out="documentation/openapi.xml" style="documentation/appconf2openapi.xsl"/>
-        <xslt in="documentation/openapi.xml" out="documentation/openapi.yml" style="documentation/xml2yml.xsl"/>
-        <delete file="documentation/openapi.xml"/>
-    </target>
-
     <target name="openapi" description="Generate a OPENAPI.yml from the appconf.xml">
-        <delete file="documentation/openapi.yml"/>
-        <xslt in="appconf.xml" out="documentation/openapi.xml" style="documentation/appconf2openapi.xsl"/>
-        <xslt in="documentation/openapi.xml" out="documentation/openapi.yml" style="documentation/xml2yml.xsl"/>
-        <delete file="documentation/openapi.xml"/>
+        <delete file="openapi.yml"/>
+        <xslt in="appconf.xml" out="openapi.xml" style="appconf2openapi.xsl"/>
+        <xslt in="openapi.xml" out="OPENAPI.yml" style="xml2yml.xsl"/>
+        <delete file="openapi.xml"/>
     </target>
 
     <!-- common build targets -->

@@ -1,7 +1,7 @@
 openapi: '3.0.2'
 info:
-  title: Workshop API 
-  description: This is the documentation of the Workshop API featured by ediarum.WEB (<https://github.com/ediarum/ediarum.WEB>)
+  title: PROJECT API 
+  description: This is the documentation of the PROJECT API featured by ediarum.WEB (<https://github.com/ediarum/ediarum.WEB>)
   version: ''
 servers: ''
 tags:
