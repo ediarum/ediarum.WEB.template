@@ -45,6 +45,7 @@
         <delete>
             <fileset dir="${project.app.folder}">
                 <include name="expath-pkg.xml"/>
+                <include name="repo.xml"/>
             </fileset>
         </delete>
         <copy todir="${project.app.folder}">
