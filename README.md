@@ -25,6 +25,30 @@ For a full documentation of the features of ediarum.WEB see here: <https://githu
 
 An **introduction** how to use ediarum.WEB is available at https://www.ediarum.org/docs/ediarum-web-step-by-step/index.html.
 
+## Development
+
+### Start a new project
+
+1. Create a new directory `ediarum.myproject.web`.
+2. Copy all files from this repo into `ediarum.myproject.web`.
+3. Update information in `build.properties` (project name, author, etc.)
+4. Add information and API endpoints to `appconf.xml`.
+
+### Build the application
+
+Using `ant`
+
+1. `ant build-xar`
+
+Without `ant`
+
+1. Add current information to `expath-pkg.xml`
+2. zip root directory as `myproject_v0.1.0.xar`
+
+### Deployment
+
+1. Install the latest `ediarum.web.xar` via eXist-db Dashboard.
+2. Install `myproject_v0.1.0.xar` via eXist-db Dashboard.
 
 ### Generate an API documentation in the OPENAPI format
 
