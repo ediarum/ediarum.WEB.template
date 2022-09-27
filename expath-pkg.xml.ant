@@ -5,5 +5,7 @@
          version="@VERSION@" 
          spec="1.0">
     <title>@PROJECTNAME@</title>
-    <dependency package="http://exist-db.org/apps/shared"/>
+    <dependency package="http://exist-db.org/html-templating"/>
+    <dependency package="http://www.functx.com"/>
+    <dependency package="http://www.bbaw.de/telota/software/ediarum/web/lib" semver-min="1.18.3"/>
 </package>

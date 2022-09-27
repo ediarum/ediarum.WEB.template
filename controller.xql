@@ -1,7 +1,8 @@
 xquery version "3.0";
 
-import module namespace config="http://www.bbaw.de/telota/software/ediarum/WEB" at "modules/config.xqm";
 import module namespace edwebcontroller="http://www.bbaw.de/telota/software/ediarum/web/controller";
+declare namespace appconf="http://www.bbaw.de/telota/software/ediarum/web/appconf";
+import module namespace dbutil="http://exist-db.org/xquery/dbutil" at "modules/dbutil.xqm";
 
 declare variable $exist:path external;
 declare variable $exist:resource external;
@@ -16,13 +17,16 @@ edwebcontroller:redirect("/", "index.html"),
 edwebcontroller:generate-path("/index.html", "static-pages/index.html"),
 
 (: Verweise mit Feed :)
-(: edwebcontroller:view-with-feed("/personen/index.html", "data-pages/personen.html", "object-type/personen"), :)
-(: edwebcontroller:view-with-feed("/personen/", "data-pages/personen-details.html", "object-type/personen/id/"), :)
-(: edwebcontroller:view-with-feed("/briefe/", "data-pages/briefe-details.html", "object-type/briefe/id/"), :)
+
+
 
 (: Generisches Frontend :)
 edwebcontroller:generate-routing("data-pages/template-list.html","data-pages/template-details.html"),
 (: API :)
 edwebcontroller:generate-api(),
+
+(: Load media :)
+edwebcontroller:load-media(""),
+
 (: Der Rest wird durchgereicht :)
 edwebcontroller:pass-through()

@@ -5,7 +5,9 @@
  :)
 xquery version "3.1";
 
-import module namespace templates="http://exist-db.org/xquery/templates" ;
+import module namespace templates="http://exist-db.org/xquery/html-templating";
+import module namespace functx = "http://www.functx.com";
+import module namespace dbutil="http://exist-db.org/xquery/dbutil" at "dbutil.xqm";
 
 (:
  : The following modules provide functions which will be called by the

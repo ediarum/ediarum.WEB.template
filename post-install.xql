@@ -1,6 +1,7 @@
 xquery version "3.1";
 
 import module namespace edweb="http://www.bbaw.de/telota/software/ediarum/web/lib";
+import module namespace dbutil="http://exist-db.org/xquery/dbutil" at "modules/dbutil.xqm";
 
 declare namespace sm="http://exist-db.org/xquery/securitymanager";
 declare namespace appconf="http://www.bbaw.de/telota/software/ediarum/web/appconf";

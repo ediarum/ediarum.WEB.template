@@ -1,64 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:appconf="http://www.bbaw.de/telota/software/ediarum/web/appconf"
-    xmlns:yml="http://www.bbaw.de/telota/software/ediarum/web/yml"
-    exclude-result-prefixes="xs appconf yml"
-    version="1.0">
-    
-    <xsl:output method="xml" indent="yes"/>
-  
-    <xsl:variable name="defaultObjectParams">
-      <yml:item><yml:string name="$ref">#/components/parameters/fromParam</yml:string></yml:item>
-      <yml:item><yml:string name="$ref">#/components/parameters/limitParam</yml:string></yml:item>
-      <yml:item><yml:string name="$ref">#/components/parameters/orderParam</yml:string></yml:item>
-      <yml:item><yml:string name="$ref">#/components/parameters/orderModifierParam</yml:string></yml:item>
-      <yml:item><yml:string name="$ref">#/components/parameters/showParam</yml:string></yml:item>
-      <yml:item><yml:string name="$ref">#/components/parameters/rangeParam</yml:string></yml:item>
-      <yml:item><yml:string name="$ref">#/components/parameters/pageParam</yml:string></yml:item>
-    </xsl:variable>
-  
-  <xsl:variable name="defaultSearchParams">
-    <yml:item><yml:string name="$ref">#/components/parameters/searchParam</yml:string></yml:item>
-    <yml:item><yml:string name="$ref">#/components/parameters/searchTypeParam</yml:string></yml:item>
-    <yml:item><yml:string name="$ref">#/components/parameters/searchXpathParam</yml:string></yml:item>
-    <yml:item><yml:string name="$ref">#/components/parameters/slopParam</yml:string></yml:item>
-    <yml:item><yml:string name="$ref">#/components/parameters/kwicWidthParam</yml:string></yml:item>
-  </xsl:variable>
-  
-    <xsl:template match="/appconf:config">
-        <yml:yml>
-            <openapi>'3.0.2'</openapi>
-            <info>
-                <title><xsl:value-of select="appconf:project/appconf:name"/> API <xsl:value-of select="appconf:project/appconf:version"/></title>
-                <description>This is the documentation of the <xsl:value-of select="appconf:project/appconf:name"/> API featured by ediarum.WEB (&lt;https://github.com/ediarum/ediarum.WEB&gt;)</description>
-                <version>'<xsl:value-of select="appconf:project/appconf:version"/>'</version>
-            </info>
-            <servers>
-                <xsl:for-each select="appconf:project/appconf:server">
-                    <yml:item><url><xsl:value-of select="."></xsl:value-of></url></yml:item>
-                </xsl:for-each>
-            </servers>
-            <tags>
-                <yml:item>
-                    <name>object</name>
-                    <description>Information about a single object</description>
-                </yml:item>
-                <yml:item>
-                    <name>object group</name>
-                    <description>Endpoint to all objects of a type</description>
-                </yml:item>
-                <yml:item>
-                    <name>search</name>
-                    <description>Endpoint to search specified indexes</description>
-                </yml:item>
-            </tags>
-            <paths>
-                <xsl:apply-templates select="appconf:object"/>
-            </paths>
-<!--            <xsl:text>## Data relation table&#xA;&#xA;</xsl:text>-->
-<!--            <xsl:text>## Search endpoints&#xA;&#xA;</xsl:text>-->
-            <yml:plain>
+openapi: '3.0.2'
+info:
+  title: PROJECT API 
+  description: This is the documentation of the PROJECT API featured by ediarum.WEB (<https://github.com/ediarum/ediarum.WEB>)
+  version: ''
+servers: ''
+security:
+  - http: []
+tags:
+  - name: object
+    description: Information about a single object
+  - name: object group
+    description: Endpoint to all objects of a type
+  - name: search
+    description: Endpoint to search specified indexes
+paths: ''
+
 components:
   schemas:
     ObjectGroup:
@@ -270,7 +226,7 @@ components:
                   path:
                     type: string
                     description: Full path to part
-                    example: book-&lt;book&gt;.&lt;chapter&gt;
+                    example: book-<book>.<chapter>
                   root:
                     type: string
                     description: Definition of part root
@@ -311,7 +267,7 @@ components:
         path:
           type: string
           description: ID template for parts of this type
-          example: book-&lt;book&gt;.&lt;book-chapter&gt;.&lt;book-chapter-segment&gt;
+          example: book-<book>.<book-chapter>.<book-chapter-segment>
         depends:
           type: string
           description: The name of the hierarchical higher part
@@ -343,7 +299,7 @@ components:
       description: Optional parameter. Defines how many (unordered) object entries are retrieved.
       schema:
         type: integer
-      default: 10000
+        default: 10000
     orderParam:
       name: order
       in: query
@@ -398,7 +354,7 @@ components:
         enum:
           - regex # for one or more words (separated by space) using regular expressions
           - phrase # for a query of multiple words. With `slop` the distance can be defined (default is 1).
-          - lucene # for a lucene query, see &lt;https://lucene.apache.org/core/2_9_4/queryparsersyntax.html&gt;
+          - lucene # for a lucene query, see <https://lucene.apache.org/core/2_9_4/queryparsersyntax.html>
     searchXpathParam:
       name: search-xpath
       in: query
@@ -417,63 +373,9 @@ components:
       description: The range of characters shown before and after the match in the hit.
       schema:
         type: integer
-      example: 20            
-            </yml:plain>
-        </yml:yml>
-    </xsl:template>
-    
-    <xsl:template match="appconf:object">
-      <xsl:variable name="has-search" select="count(appconf:lucene) >0"/>
-        <yml:object name="/api/{@xml:id}">
-            <get>
-                <tags>
-                    <yml:item>object group</yml:item>
-                    <xsl:if test="$has-search">
-                      <yml:item>search</yml:item>
-                    </xsl:if>  
-                </tags>
-                <summary>
-                    <xsl:value-of select="appconf:name"/>
-                </summary>
-                <description> |
-                    <xsl:value-of select="appconf:description"/>
-                </description>
-                <parameters>
-                    <xsl:apply-templates select="appconf:filters/appconf:filter"/>
-                    <xsl:copy-of select="$defaultObjectParams"/>
-                    <xsl:if test="$has-search">
-                        <xsl:copy-of select="$defaultSearchParams"/>
-                    </xsl:if>
-                </parameters>
-                <responses>
-                    <yml:object name="'200'">
-                        <description>OK</description>
-                        <content>
-                            <yml:object name="application/json">
-                                <schema>
-                                    <yml:string name="$ref">#/components/schemas/ObjectGroup</yml:string>
-                                </schema>
-                            </yml:object>
-                        </content>
-                    </yml:object>
-                </responses>
-            </get>
-        </yml:object>
-    </xsl:template>
-    
-    <xsl:template match="appconf:filter">
-        <yml:item>
-            <name><xsl:value-of select="@xml:id"/></name>
-            <in>query</in>
-            <description><xsl:value-of select="appconf:name"/></description>
-            <schema>
-                <type>string</type>
-            </schema>
-        </yml:item>
-    </xsl:template>
-    
-    <xsl:template match="*">
-        <xsl:value-of select="name()"/>
-    </xsl:template>
-    
-</xsl:stylesheet>
+      example: 20
+  securitySchemes:
+    http:
+      type: http
+      scheme: basic
+            
