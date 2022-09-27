@@ -88,8 +88,8 @@
                 <xsl:text>'&#xA;</xsl:text>
             </xsl:when>
             <!-- Plain yml -->
-            <xsl:when test="$element/self::yml:plain">
-                <xsl:value-of select="$element/text()"/>
+            <xsl:when test="$element/self::yml:plain"><xsl:value-of select="$element/text()"/>
+                <xsl:text>&#xA;</xsl:text>
             </xsl:when>
             <!-- Key-Value -->
             <xsl:when test="not($element/child::*)">

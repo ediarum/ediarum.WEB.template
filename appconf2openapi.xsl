@@ -39,6 +39,11 @@
                     <yml:item><url><xsl:value-of select="."></xsl:value-of></url></yml:item>
                 </xsl:for-each>
             </servers>
+            <security>
+              <yml:item>
+                <http>[]</http>
+              </yml:item>
+            </security>
             <tags>
                 <yml:item>
                     <name>object</name>
@@ -343,7 +348,7 @@ components:
       description: Optional parameter. Defines how many (unordered) object entries are retrieved.
       schema:
         type: integer
-      default: 10000
+        default: 10000
     orderParam:
       name: order
       in: query
@@ -417,14 +422,19 @@ components:
       description: The range of characters shown before and after the match in the hit.
       schema:
         type: integer
-      example: 20            
+      example: 20
+  securitySchemes:
+    http:
+      type: http
+      scheme: basic
             </yml:plain>
         </yml:yml>
     </xsl:template>
     
     <xsl:template match="appconf:object">
       <xsl:variable name="has-search" select="count(appconf:lucene) >0"/>
-        <yml:object name="/api/{@xml:id}">
+      <xsl:variable name="has-parts" select="count(appconf:parts/appconf:part) >0"/>
+      <yml:object name="/api/{@xml:id}">
             <get>
                 <tags>
                     <yml:item>object group</yml:item>
@@ -458,6 +468,97 @@ components:
                     </yml:object>
                 </responses>
             </get>
+        </yml:object>
+        <yml:object name="/api/{@xml:id}/{{object-id}}">
+          <get>
+            <tags>
+              <yml:item>object</yml:item>
+              <xsl:if test="$has-search">
+                <yml:item>search</yml:item>
+              </xsl:if>
+            </tags>
+            <summary>Get <xsl:value-of select="@xml:id"/> object</summary>
+            <description> |
+              Returns a information of a single object.<xsl:if test="$has-search">
+
+                Can be used also to search within an object. The hits are added to the JSON output with the key `search-results`.
+                If `output=xml` is used, the matches are marked up in the xml with `&lt;exist:match xmlns:exist="http://exist.sourceforge.net/NS/exist"&gt;`
+                  If combined with the parameter `part-def` for each result the found part if this type is added as `part-id`.
+
+                  Example:
+
+                  `/api/texts/id100011?search=Vorfahren`
+                  `/api/texts/id100001?search=Vorfahren&amp;output=xml`
+                  `/api/texts/id036011?search=Kind&amp;part-def=book-chapter-segment`</xsl:if></description>
+            <parameters>
+              <yml:plain>- name: object-id
+          in: path
+          description: ID of the object
+          required: true
+          schema:
+            type: string
+          example: id0123456
+        - name: output
+          in: query
+          description: Defines which object representation is shown. If not set some object information is retrieved as JSON.
+          schema:
+            type: string
+            enum:
+              - xml # the XML representation of the object is retrieved. Can be used with `view`.
+              - html # a HTML serialization of the object is retrieved. To be used with `view`.
+              - text # a text serialization of the object is retrieved. To be used with `view`.
+              - json-xml # some of the object information is retrieved as JSON, including the XML.
+        - name: view
+          in: query
+          description: defines which view is used to transform the object. The result is retrieved. To be used with `output`.
+          schema:
+            type: string</yml:plain>
+              <xsl:if test="$has-search"><yml:plain>
+        - $ref: '#/components/parameters/searchParam'
+        - $ref: '#/components/parameters/searchTypeParam'
+        - $ref: '#/components/parameters/searchXpathParam'
+        - $ref: '#/components/parameters/slopParam'
+        - $ref: '#/components/parameters/kwicWidthParam'</yml:plain>
+              </xsl:if>
+              <xsl:if test="$has-search and $has-parts">
+                <yml:plain>- name: part-def
+          in: query
+          description: To be used with `search`. Specifies to show to which parts the hits belong to.
+          schema:
+            type: string
+          example: level-1</yml:plain></xsl:if>
+              <xsl:if test="$has-parts"><yml:plain>- name: part
+          in: query
+          description: If set the IDs of found passages of this definition are shown.
+          schema:
+            type: string
+          example: level-1</yml:plain>
+              </xsl:if>
+            </parameters>
+            <responses>
+              <yml:object name="'200'">
+                <description>OK</description>
+                <content>
+                  <yml:object name="application/xml">
+                    <schema>
+                      <type>object</type>
+                      <additionalProperties>true</additionalProperties>
+                      <description>Shows the XML data.<xsl:if test="$has-search">
+
+                          If a search was triggered the hits are marked with `&lt;exist:match xmlns:exist="http://exist.sourceforge.net/NS/exist"&gt;`.</xsl:if></description>
+                    </schema>
+                  </yml:object>
+                  <yml:object name="application/json">
+                    <schema>
+                      <!-- # oneOf:-->
+                      <yml:string name="$ref">#/components/schemas/ObjectExtended</yml:string>
+                      <!-- # $ref: '#/components/schemas/PartList'-->
+                    </schema>
+                  </yml:object>
+                </content>
+              </yml:object>              
+            </responses>
+          </get>
         </yml:object>
     </xsl:template>
     

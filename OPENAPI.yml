@@ -4,6 +4,8 @@ info:
   description: This is the documentation of the PROJECT API featured by ediarum.WEB (<https://github.com/ediarum/ediarum.WEB>)
   version: ''
 servers: ''
+security:
+  - http: []
 tags:
   - name: object
     description: Information about a single object
@@ -297,7 +299,7 @@ components:
       description: Optional parameter. Defines how many (unordered) object entries are retrieved.
       schema:
         type: integer
-      default: 10000
+        default: 10000
     orderParam:
       name: order
       in: query
@@ -371,5 +373,9 @@ components:
       description: The range of characters shown before and after the match in the hit.
       schema:
         type: integer
-      example: 20            
+      example: 20
+  securitySchemes:
+    http:
+      type: http
+      scheme: basic
             
