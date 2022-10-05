@@ -31,7 +31,7 @@ An **introduction** how to use ediarum.WEB is available at https://www.ediarum.o
 
 1. Create a new directory `ediarum.myproject.web`.
 2. Copy all files from this repo into `ediarum.myproject.web`.
-3. Update information in `build.properties` (project name, author, etc.)
+3. Update information in `build.properties` (project name, author, etc.) which is used in the ANT build process (see below).
 4. Add information and API endpoints to `appconf.xml`.
 
 ### Build the application
@@ -51,6 +51,20 @@ Without `ant`
 2. Install `myproject_v0.1.0.xar` via eXist-db Dashboard.
 
 ### Generate an API documentation in the OPENAPI format
+
+Using `ant`
+
+1. `ant openapi`
+
+Without `ant`
+
+1. Transform the `appconf.xml` with `appconf2openapi.xsl`
+2. and the result with `xml2yml.xsl`
+3. Save as `OPENAPI.yml`
+
+### Change dashboard icon
+
+Replace `icon.png` with the icon of your choice.
 
 ## License
 
