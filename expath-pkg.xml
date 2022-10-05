@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package xmlns="http://expath.org/ns/pkg" 
-         name="http://www.bbaw.de/telota/software/ediarum/workshop" 
-         abbrev="workshop.web" 
-         version="v0.2.0.2020-03-65.13-19-46" 
+         name="http://www.bbaw.de/telota/software/ediarum/web-template" 
+         abbrev="ediarum.web.template" 
+         version="v1.0.0" 
          spec="1.0">
-    <title>Workshop</title>
-    <dependency package="http://exist-db.org/apps/shared"/>
+    <title>ediarum.WEB.template</title>
+    <dependency package="http://exist-db.org/html-templating"/>
+    <dependency package="http://www.functx.com"/>
+    <dependency package="http://www.bbaw.de/telota/software/ediarum/web/lib" semver-min="1.18.3"/>
 </package>

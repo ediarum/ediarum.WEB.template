@@ -12,7 +12,6 @@ Lead Developer:
 
 * Martin Fechner
 
-
 ## What does it do?
 
 ediarum.WEB.template contains all files to start a new project with ediarum.WEB.
