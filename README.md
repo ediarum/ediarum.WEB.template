@@ -3,10 +3,10 @@
 © 2022 by Berlin-Brandenburg Academey of Sciences and Humanities
 
 Developed by TELOTA, a DH working group of the Berlin-Brandenburg Academey of Sciences and Humanities  
-http://www.bbaw.de/telota  
+<http://www.bbaw.de/telota>
 telota@bbaw.de
 
-For more infomation about **ediarum** see www.ediarum.org.
+For more infomation about **ediarum** see <www.ediarum.org>.
 
 Lead Developer:
 
@@ -22,7 +22,9 @@ With the help of ediarum.WEB, developers can build an entire website or just a b
 
 For a full documentation of the features of ediarum.WEB see here: <https://github.com/ediarum/ediarum.WEB>.
 
-An **introduction** how to use ediarum.WEB is available at https://www.ediarum.org/docs/ediarum-web-step-by-step/index.html.
+An **introduction** how to use ediarum.WEB is available at <https://www.ediarum.org/docs/ediarum-web-step-by-step/index.html>.
+
+For more information about application development for eXist-db see <http://exist-db.org/exist/apps/doc/documentation>.
 
 ## Development
 
