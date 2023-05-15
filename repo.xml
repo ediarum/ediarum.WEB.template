@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <meta xmlns="http://exist-db.org/xquery/repo">
-    <description>Workshop</description>
+    <description>ediarum.WEB.template</description>
     <author>TELOTA</author>
-    <website>http://www.bbaw.de/telota/software/ediarum/workshop</website>
+    <website>http://www.bbaw.de/telota/software/ediarum/web-template</website>
     <status>alpha</status>
     <license>GNU-LGPL</license>
     <copyright>true</copyright>
     <type>application</type>
-    <target>workshop.web</target>
+    <target>ediarum.web.template</target>
     <prepare>pre-install.xql</prepare>
     <finish>post-install.xql</finish>
 </meta>

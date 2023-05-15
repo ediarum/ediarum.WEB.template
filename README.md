@@ -3,15 +3,14 @@
 © 2022 by Berlin-Brandenburg Academey of Sciences and Humanities
 
 Developed by TELOTA, a DH working group of the Berlin-Brandenburg Academey of Sciences and Humanities  
-http://www.bbaw.de/telota  
+<http://www.bbaw.de/telota>
 telota@bbaw.de
 
-For more infomation about **ediarum** see www.ediarum.org.
+For more infomation about **ediarum** see <www.ediarum.org>.
 
 Lead Developer:
 
 * Martin Fechner
-
 
 ## What does it do?
 
@@ -23,7 +22,9 @@ With the help of ediarum.WEB, developers can build an entire website or just a b
 
 For a full documentation of the features of ediarum.WEB see here: <https://github.com/ediarum/ediarum.WEB>.
 
-An **introduction** how to use ediarum.WEB is available at https://www.ediarum.org/docs/ediarum-web-step-by-step/index.html.
+An **introduction** how to use ediarum.WEB is available at <https://www.ediarum.org/docs/ediarum-web-step-by-step/index.html>.
+
+For more information about application development for eXist-db see <http://exist-db.org/exist/apps/doc/documentation>.
 
 ## Development
 
@@ -31,7 +32,7 @@ An **introduction** how to use ediarum.WEB is available at https://www.ediarum.o
 
 1. Create a new directory `ediarum.myproject.web`.
 2. Copy all files from this repo into `ediarum.myproject.web`.
-3. Update information in `build.properties` (project name, author, etc.)
+3. Update information in `build.properties` (project name, author, etc.) which is used in the ANT build process (see below).
 4. Add information and API endpoints to `appconf.xml`.
 
 ### Build the application
@@ -51,6 +52,20 @@ Without `ant`
 2. Install `myproject_v0.1.0.xar` via eXist-db Dashboard.
 
 ### Generate an API documentation in the OPENAPI format
+
+Using `ant`
+
+1. `ant openapi`
+
+Without `ant`
+
+1. Transform the `appconf.xml` with `appconf2openapi.xsl`
+2. and the result with `xml2yml.xsl`
+3. Save as `OPENAPI.yml`
+
+### Change dashboard icon
+
+Replace `icon.png` with the icon of your choice.
 
 ## License
 

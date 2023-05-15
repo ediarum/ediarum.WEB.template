@@ -1,0 +1,13 @@
+abstract: "ediarum.WEB.template contains all files to start a new project with ediarum.WEB."
+authors:
+  - given-names: Martin
+    family-names: Fechner
+    orcid: 'https://orcid.org/0000-0001-9233-0653'
+cff-version: 1.2.0
+date-released: "2022-10-05"
+license: "GPL-3.0"
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/ediarum/ediarum.WEB.template"
+title: ediarum.WEB.template
+type: software
+version: 1.0.0
